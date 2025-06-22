@@ -1,0 +1,1313 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="3/25/2024 10:47:58 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="****"
+  DTS:CreatorName="******"
+  DTS:DTSID="{2ED92D69-267C-4F19-9DC8-4586476100F1}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5223.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="13"
+  DTS:VersionGUID="{EC41956E-8428-4E33-92CC-058F7A6A0B9B}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Survey.Warehouse]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{DBCB02AE-7E4F-486D-9D2E-387FA3D80822}"
+      DTS:ObjectName="Survey.Warehouse">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=*;Initial Catalog=Survey.Warehouse;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{DBCB02AE-7E4F-486D-9D2E-387FA3D80822}Survey.Warehouse;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Staging]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{94D075A2-8C1E-4634-B929-E9D0C27F1456}"
+      DTS:ObjectName="Staging">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=*;Initial Catalog=Staging;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{94D075A2-8C1E-4634-B929-E9D0C27F1456}Staging;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\ETL_Department"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{7B8CA6AD-E27E-4A2B-B8DE-CCD1606B3A46}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="ETL_Department"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\ETL_Department\Department"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Department"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[rpt].[Department]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\ETL_Department\Department.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Survey.Warehouse]"
+                  connectionManagerRefId="Package.ConnectionManagers[Survey.Warehouse]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\ETL_Department\Department.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ETL_Department\Department.Outputs[OLE DB Source Output].Columns[OrganLevel1Name]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ETL_Department\Department.Outputs[OLE DB Source Output].ExternalColumns[OrganLevel1Name]"
+                      length="256"
+                      lineageId="Package\ETL_Department\Department.Outputs[OLE DB Source Output].Columns[OrganLevel1Name]"
+                      name="OrganLevel1Name"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ETL_Department\Department.Outputs[OLE DB Source Output].Columns[OrganLevel1Code]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ETL_Department\Department.Outputs[OLE DB Source Output].ExternalColumns[OrganLevel1Code]"
+                      length="20"
+                      lineageId="Package\ETL_Department\Department.Outputs[OLE DB Source Output].Columns[OrganLevel1Code]"
+                      name="OrganLevel1Code"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ETL_Department\Department.Outputs[OLE DB Source Output].Columns[OrganLevel2Name]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ETL_Department\Department.Outputs[OLE DB Source Output].ExternalColumns[OrganLevel2Name]"
+                      length="256"
+                      lineageId="Package\ETL_Department\Department.Outputs[OLE DB Source Output].Columns[OrganLevel2Name]"
+                      name="OrganLevel2Name"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ETL_Department\Department.Outputs[OLE DB Source Output].Columns[OrganLevel2Code]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ETL_Department\Department.Outputs[OLE DB Source Output].ExternalColumns[OrganLevel2Code]"
+                      length="20"
+                      lineageId="Package\ETL_Department\Department.Outputs[OLE DB Source Output].Columns[OrganLevel2Code]"
+                      name="OrganLevel2Code"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ETL_Department\Department.Outputs[OLE DB Source Output].Columns[OrganLevel3Name]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ETL_Department\Department.Outputs[OLE DB Source Output].ExternalColumns[OrganLevel3Name]"
+                      length="256"
+                      lineageId="Package\ETL_Department\Department.Outputs[OLE DB Source Output].Columns[OrganLevel3Name]"
+                      name="OrganLevel3Name"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ETL_Department\Department.Outputs[OLE DB Source Output].Columns[OrganLevel3Code]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ETL_Department\Department.Outputs[OLE DB Source Output].ExternalColumns[OrganLevel3Code]"
+                      length="20"
+                      lineageId="Package\ETL_Department\Department.Outputs[OLE DB Source Output].Columns[OrganLevel3Code]"
+                      name="OrganLevel3Code"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ETL_Department\Department.Outputs[OLE DB Source Output].Columns[OrganCode]"
+                      codePage="1256"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ETL_Department\Department.Outputs[OLE DB Source Output].ExternalColumns[OrganCode]"
+                      length="20"
+                      lineageId="Package\ETL_Department\Department.Outputs[OLE DB Source Output].Columns[OrganCode]"
+                      name="OrganCode"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ETL_Department\Department.Outputs[OLE DB Source Output].Columns[OrganName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ETL_Department\Department.Outputs[OLE DB Source Output].ExternalColumns[OrganName]"
+                      length="256"
+                      lineageId="Package\ETL_Department\Department.Outputs[OLE DB Source Output].Columns[OrganName]"
+                      name="OrganName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ETL_Department\Department.Outputs[OLE DB Source Output].Columns[DepartmentSubTypeTitle]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ETL_Department\Department.Outputs[OLE DB Source Output].ExternalColumns[DepartmentSubTypeTitle]"
+                      length="500"
+                      lineageId="Package\ETL_Department\Department.Outputs[OLE DB Source Output].Columns[DepartmentSubTypeTitle]"
+                      name="DepartmentSubTypeTitle"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ETL_Department\Department.Outputs[OLE DB Source Output].Columns[ParentOrganName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ETL_Department\Department.Outputs[OLE DB Source Output].ExternalColumns[ParentOrganName]"
+                      length="256"
+                      lineageId="Package\ETL_Department\Department.Outputs[OLE DB Source Output].Columns[ParentOrganName]"
+                      name="ParentOrganName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ETL_Department\Department.Outputs[OLE DB Source Output].Columns[ParentOrganCode]"
+                      codePage="1256"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ETL_Department\Department.Outputs[OLE DB Source Output].ExternalColumns[ParentOrganCode]"
+                      length="20"
+                      lineageId="Package\ETL_Department\Department.Outputs[OLE DB Source Output].Columns[ParentOrganCode]"
+                      name="ParentOrganCode"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ETL_Department\Department.Outputs[OLE DB Source Output].Columns[OrganType]"
+                      dataType="ui1"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ETL_Department\Department.Outputs[OLE DB Source Output].ExternalColumns[OrganType]"
+                      lineageId="Package\ETL_Department\Department.Outputs[OLE DB Source Output].Columns[OrganType]"
+                      name="OrganType"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ETL_Department\Department.Outputs[OLE DB Source Output].Columns[ProvinceName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ETL_Department\Department.Outputs[OLE DB Source Output].ExternalColumns[ProvinceName]"
+                      length="100"
+                      lineageId="Package\ETL_Department\Department.Outputs[OLE DB Source Output].Columns[ProvinceName]"
+                      name="ProvinceName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ETL_Department\Department.Outputs[OLE DB Source Output].Columns[COFOGTitle]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ETL_Department\Department.Outputs[OLE DB Source Output].ExternalColumns[COFOGTitle]"
+                      length="500"
+                      lineageId="Package\ETL_Department\Department.Outputs[OLE DB Source Output].Columns[COFOGTitle]"
+                      name="COFOGTitle"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ETL_Department\Department.Outputs[OLE DB Source Output].Columns[UserDefinitionReferenceTypeTitle]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ETL_Department\Department.Outputs[OLE DB Source Output].ExternalColumns[UserDefinitionReferenceTypeTitle]"
+                      length="500"
+                      lineageId="Package\ETL_Department\Department.Outputs[OLE DB Source Output].Columns[UserDefinitionReferenceTypeTitle]"
+                      name="UserDefinitionReferenceTypeTitle"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\ETL_Department\Department.Outputs[OLE DB Source Output].ExternalColumns[OrganLevel1Name]"
+                      dataType="wstr"
+                      length="256"
+                      name="OrganLevel1Name" />
+                    <externalMetadataColumn
+                      refId="Package\ETL_Department\Department.Outputs[OLE DB Source Output].ExternalColumns[OrganLevel1Code]"
+                      dataType="wstr"
+                      length="20"
+                      name="OrganLevel1Code" />
+                    <externalMetadataColumn
+                      refId="Package\ETL_Department\Department.Outputs[OLE DB Source Output].ExternalColumns[OrganLevel2Name]"
+                      dataType="wstr"
+                      length="256"
+                      name="OrganLevel2Name" />
+                    <externalMetadataColumn
+                      refId="Package\ETL_Department\Department.Outputs[OLE DB Source Output].ExternalColumns[OrganLevel2Code]"
+                      dataType="wstr"
+                      length="20"
+                      name="OrganLevel2Code" />
+                    <externalMetadataColumn
+                      refId="Package\ETL_Department\Department.Outputs[OLE DB Source Output].ExternalColumns[OrganLevel3Name]"
+                      dataType="wstr"
+                      length="256"
+                      name="OrganLevel3Name" />
+                    <externalMetadataColumn
+                      refId="Package\ETL_Department\Department.Outputs[OLE DB Source Output].ExternalColumns[OrganLevel3Code]"
+                      dataType="wstr"
+                      length="20"
+                      name="OrganLevel3Code" />
+                    <externalMetadataColumn
+                      refId="Package\ETL_Department\Department.Outputs[OLE DB Source Output].ExternalColumns[OrganCode]"
+                      codePage="1256"
+                      dataType="str"
+                      length="20"
+                      name="OrganCode" />
+                    <externalMetadataColumn
+                      refId="Package\ETL_Department\Department.Outputs[OLE DB Source Output].ExternalColumns[OrganName]"
+                      dataType="wstr"
+                      length="256"
+                      name="OrganName" />
+                    <externalMetadataColumn
+                      refId="Package\ETL_Department\Department.Outputs[OLE DB Source Output].ExternalColumns[DepartmentSubTypeTitle]"
+                      dataType="wstr"
+                      length="500"
+                      name="DepartmentSubTypeTitle" />
+                    <externalMetadataColumn
+                      refId="Package\ETL_Department\Department.Outputs[OLE DB Source Output].ExternalColumns[ParentOrganName]"
+                      dataType="wstr"
+                      length="256"
+                      name="ParentOrganName" />
+                    <externalMetadataColumn
+                      refId="Package\ETL_Department\Department.Outputs[OLE DB Source Output].ExternalColumns[ParentOrganCode]"
+                      codePage="1256"
+                      dataType="str"
+                      length="20"
+                      name="ParentOrganCode" />
+                    <externalMetadataColumn
+                      refId="Package\ETL_Department\Department.Outputs[OLE DB Source Output].ExternalColumns[OrganType]"
+                      dataType="ui1"
+                      name="OrganType" />
+                    <externalMetadataColumn
+                      refId="Package\ETL_Department\Department.Outputs[OLE DB Source Output].ExternalColumns[ProvinceName]"
+                      dataType="wstr"
+                      length="100"
+                      name="ProvinceName" />
+                    <externalMetadataColumn
+                      refId="Package\ETL_Department\Department.Outputs[OLE DB Source Output].ExternalColumns[COFOGTitle]"
+                      dataType="wstr"
+                      length="500"
+                      name="COFOGTitle" />
+                    <externalMetadataColumn
+                      refId="Package\ETL_Department\Department.Outputs[OLE DB Source Output].ExternalColumns[UserDefinitionReferenceTypeTitle]"
+                      dataType="wstr"
+                      length="500"
+                      name="UserDefinitionReferenceTypeTitle" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\ETL_Department\Department.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ETL_Department\Department.Outputs[OLE DB Source Error Output].Columns[OrganLevel1Name]"
+                      dataType="wstr"
+                      length="256"
+                      lineageId="Package\ETL_Department\Department.Outputs[OLE DB Source Error Output].Columns[OrganLevel1Name]"
+                      name="OrganLevel1Name" />
+                    <outputColumn
+                      refId="Package\ETL_Department\Department.Outputs[OLE DB Source Error Output].Columns[OrganLevel1Code]"
+                      dataType="wstr"
+                      length="20"
+                      lineageId="Package\ETL_Department\Department.Outputs[OLE DB Source Error Output].Columns[OrganLevel1Code]"
+                      name="OrganLevel1Code" />
+                    <outputColumn
+                      refId="Package\ETL_Department\Department.Outputs[OLE DB Source Error Output].Columns[OrganLevel2Name]"
+                      dataType="wstr"
+                      length="256"
+                      lineageId="Package\ETL_Department\Department.Outputs[OLE DB Source Error Output].Columns[OrganLevel2Name]"
+                      name="OrganLevel2Name" />
+                    <outputColumn
+                      refId="Package\ETL_Department\Department.Outputs[OLE DB Source Error Output].Columns[OrganLevel2Code]"
+                      dataType="wstr"
+                      length="20"
+                      lineageId="Package\ETL_Department\Department.Outputs[OLE DB Source Error Output].Columns[OrganLevel2Code]"
+                      name="OrganLevel2Code" />
+                    <outputColumn
+                      refId="Package\ETL_Department\Department.Outputs[OLE DB Source Error Output].Columns[OrganLevel3Name]"
+                      dataType="wstr"
+                      length="256"
+                      lineageId="Package\ETL_Department\Department.Outputs[OLE DB Source Error Output].Columns[OrganLevel3Name]"
+                      name="OrganLevel3Name" />
+                    <outputColumn
+                      refId="Package\ETL_Department\Department.Outputs[OLE DB Source Error Output].Columns[OrganLevel3Code]"
+                      dataType="wstr"
+                      length="20"
+                      lineageId="Package\ETL_Department\Department.Outputs[OLE DB Source Error Output].Columns[OrganLevel3Code]"
+                      name="OrganLevel3Code" />
+                    <outputColumn
+                      refId="Package\ETL_Department\Department.Outputs[OLE DB Source Error Output].Columns[OrganCode]"
+                      codePage="1256"
+                      dataType="str"
+                      length="20"
+                      lineageId="Package\ETL_Department\Department.Outputs[OLE DB Source Error Output].Columns[OrganCode]"
+                      name="OrganCode" />
+                    <outputColumn
+                      refId="Package\ETL_Department\Department.Outputs[OLE DB Source Error Output].Columns[OrganName]"
+                      dataType="wstr"
+                      length="256"
+                      lineageId="Package\ETL_Department\Department.Outputs[OLE DB Source Error Output].Columns[OrganName]"
+                      name="OrganName" />
+                    <outputColumn
+                      refId="Package\ETL_Department\Department.Outputs[OLE DB Source Error Output].Columns[DepartmentSubTypeTitle]"
+                      dataType="wstr"
+                      length="500"
+                      lineageId="Package\ETL_Department\Department.Outputs[OLE DB Source Error Output].Columns[DepartmentSubTypeTitle]"
+                      name="DepartmentSubTypeTitle" />
+                    <outputColumn
+                      refId="Package\ETL_Department\Department.Outputs[OLE DB Source Error Output].Columns[ParentOrganName]"
+                      dataType="wstr"
+                      length="256"
+                      lineageId="Package\ETL_Department\Department.Outputs[OLE DB Source Error Output].Columns[ParentOrganName]"
+                      name="ParentOrganName" />
+                    <outputColumn
+                      refId="Package\ETL_Department\Department.Outputs[OLE DB Source Error Output].Columns[ParentOrganCode]"
+                      codePage="1256"
+                      dataType="str"
+                      length="20"
+                      lineageId="Package\ETL_Department\Department.Outputs[OLE DB Source Error Output].Columns[ParentOrganCode]"
+                      name="ParentOrganCode" />
+                    <outputColumn
+                      refId="Package\ETL_Department\Department.Outputs[OLE DB Source Error Output].Columns[OrganType]"
+                      dataType="ui1"
+                      lineageId="Package\ETL_Department\Department.Outputs[OLE DB Source Error Output].Columns[OrganType]"
+                      name="OrganType" />
+                    <outputColumn
+                      refId="Package\ETL_Department\Department.Outputs[OLE DB Source Error Output].Columns[ProvinceName]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\ETL_Department\Department.Outputs[OLE DB Source Error Output].Columns[ProvinceName]"
+                      name="ProvinceName" />
+                    <outputColumn
+                      refId="Package\ETL_Department\Department.Outputs[OLE DB Source Error Output].Columns[COFOGTitle]"
+                      dataType="wstr"
+                      length="500"
+                      lineageId="Package\ETL_Department\Department.Outputs[OLE DB Source Error Output].Columns[COFOGTitle]"
+                      name="COFOGTitle" />
+                    <outputColumn
+                      refId="Package\ETL_Department\Department.Outputs[OLE DB Source Error Output].Columns[UserDefinitionReferenceTypeTitle]"
+                      dataType="wstr"
+                      length="500"
+                      lineageId="Package\ETL_Department\Department.Outputs[OLE DB Source Error Output].Columns[UserDefinitionReferenceTypeTitle]"
+                      name="UserDefinitionReferenceTypeTitle" />
+                    <outputColumn
+                      refId="Package\ETL_Department\Department.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\ETL_Department\Department.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\ETL_Department\Department.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\ETL_Department\Department.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\ETL_Department\Staging_Department"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Staging_Department"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[Department]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1256</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\ETL_Department\Staging_Department.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Staging]"
+                  connectionManagerRefId="Package.ConnectionManagers[Staging]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\ETL_Department\Staging_Department.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\ETL_Department\Staging_Department.Inputs[OLE DB Destination Input].Columns[OrganLevel1Name]"
+                      cachedDataType="wstr"
+                      cachedLength="256"
+                      cachedName="OrganLevel1Name"
+                      externalMetadataColumnId="Package\ETL_Department\Staging_Department.Inputs[OLE DB Destination Input].ExternalColumns[OrganLevel1Name]"
+                      lineageId="Package\ETL_Department\Department.Outputs[OLE DB Source Output].Columns[OrganLevel1Name]" />
+                    <inputColumn
+                      refId="Package\ETL_Department\Staging_Department.Inputs[OLE DB Destination Input].Columns[OrganLevel1Code]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="OrganLevel1Code"
+                      externalMetadataColumnId="Package\ETL_Department\Staging_Department.Inputs[OLE DB Destination Input].ExternalColumns[OrganLevel1Code]"
+                      lineageId="Package\ETL_Department\Department.Outputs[OLE DB Source Output].Columns[OrganLevel1Code]" />
+                    <inputColumn
+                      refId="Package\ETL_Department\Staging_Department.Inputs[OLE DB Destination Input].Columns[OrganLevel2Name]"
+                      cachedDataType="wstr"
+                      cachedLength="256"
+                      cachedName="OrganLevel2Name"
+                      externalMetadataColumnId="Package\ETL_Department\Staging_Department.Inputs[OLE DB Destination Input].ExternalColumns[OrganLevel2Name]"
+                      lineageId="Package\ETL_Department\Department.Outputs[OLE DB Source Output].Columns[OrganLevel2Name]" />
+                    <inputColumn
+                      refId="Package\ETL_Department\Staging_Department.Inputs[OLE DB Destination Input].Columns[OrganLevel2Code]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="OrganLevel2Code"
+                      externalMetadataColumnId="Package\ETL_Department\Staging_Department.Inputs[OLE DB Destination Input].ExternalColumns[OrganLevel2Code]"
+                      lineageId="Package\ETL_Department\Department.Outputs[OLE DB Source Output].Columns[OrganLevel2Code]" />
+                    <inputColumn
+                      refId="Package\ETL_Department\Staging_Department.Inputs[OLE DB Destination Input].Columns[OrganLevel3Name]"
+                      cachedDataType="wstr"
+                      cachedLength="256"
+                      cachedName="OrganLevel3Name"
+                      externalMetadataColumnId="Package\ETL_Department\Staging_Department.Inputs[OLE DB Destination Input].ExternalColumns[OrganLevel3Name]"
+                      lineageId="Package\ETL_Department\Department.Outputs[OLE DB Source Output].Columns[OrganLevel3Name]" />
+                    <inputColumn
+                      refId="Package\ETL_Department\Staging_Department.Inputs[OLE DB Destination Input].Columns[OrganLevel3Code]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="OrganLevel3Code"
+                      externalMetadataColumnId="Package\ETL_Department\Staging_Department.Inputs[OLE DB Destination Input].ExternalColumns[OrganLevel3Code]"
+                      lineageId="Package\ETL_Department\Department.Outputs[OLE DB Source Output].Columns[OrganLevel3Code]" />
+                    <inputColumn
+                      refId="Package\ETL_Department\Staging_Department.Inputs[OLE DB Destination Input].Columns[OrganCode]"
+                      cachedCodepage="1256"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="OrganCode"
+                      externalMetadataColumnId="Package\ETL_Department\Staging_Department.Inputs[OLE DB Destination Input].ExternalColumns[OrganCode]"
+                      lineageId="Package\ETL_Department\Department.Outputs[OLE DB Source Output].Columns[OrganCode]" />
+                    <inputColumn
+                      refId="Package\ETL_Department\Staging_Department.Inputs[OLE DB Destination Input].Columns[OrganName]"
+                      cachedDataType="wstr"
+                      cachedLength="256"
+                      cachedName="OrganName"
+                      externalMetadataColumnId="Package\ETL_Department\Staging_Department.Inputs[OLE DB Destination Input].ExternalColumns[OrganName]"
+                      lineageId="Package\ETL_Department\Department.Outputs[OLE DB Source Output].Columns[OrganName]" />
+                    <inputColumn
+                      refId="Package\ETL_Department\Staging_Department.Inputs[OLE DB Destination Input].Columns[DepartmentSubTypeTitle]"
+                      cachedDataType="wstr"
+                      cachedLength="500"
+                      cachedName="DepartmentSubTypeTitle"
+                      externalMetadataColumnId="Package\ETL_Department\Staging_Department.Inputs[OLE DB Destination Input].ExternalColumns[DepartmentSubTypeTitle]"
+                      lineageId="Package\ETL_Department\Department.Outputs[OLE DB Source Output].Columns[DepartmentSubTypeTitle]" />
+                    <inputColumn
+                      refId="Package\ETL_Department\Staging_Department.Inputs[OLE DB Destination Input].Columns[ParentOrganName]"
+                      cachedDataType="wstr"
+                      cachedLength="256"
+                      cachedName="ParentOrganName"
+                      externalMetadataColumnId="Package\ETL_Department\Staging_Department.Inputs[OLE DB Destination Input].ExternalColumns[ParentOrganName]"
+                      lineageId="Package\ETL_Department\Department.Outputs[OLE DB Source Output].Columns[ParentOrganName]" />
+                    <inputColumn
+                      refId="Package\ETL_Department\Staging_Department.Inputs[OLE DB Destination Input].Columns[ParentOrganCode]"
+                      cachedCodepage="1256"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="ParentOrganCode"
+                      externalMetadataColumnId="Package\ETL_Department\Staging_Department.Inputs[OLE DB Destination Input].ExternalColumns[ParentOrganCode]"
+                      lineageId="Package\ETL_Department\Department.Outputs[OLE DB Source Output].Columns[ParentOrganCode]" />
+                    <inputColumn
+                      refId="Package\ETL_Department\Staging_Department.Inputs[OLE DB Destination Input].Columns[OrganType]"
+                      cachedDataType="ui1"
+                      cachedName="OrganType"
+                      externalMetadataColumnId="Package\ETL_Department\Staging_Department.Inputs[OLE DB Destination Input].ExternalColumns[OrganType]"
+                      lineageId="Package\ETL_Department\Department.Outputs[OLE DB Source Output].Columns[OrganType]" />
+                    <inputColumn
+                      refId="Package\ETL_Department\Staging_Department.Inputs[OLE DB Destination Input].Columns[ProvinceName]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="ProvinceName"
+                      externalMetadataColumnId="Package\ETL_Department\Staging_Department.Inputs[OLE DB Destination Input].ExternalColumns[ProvinceName]"
+                      lineageId="Package\ETL_Department\Department.Outputs[OLE DB Source Output].Columns[ProvinceName]" />
+                    <inputColumn
+                      refId="Package\ETL_Department\Staging_Department.Inputs[OLE DB Destination Input].Columns[COFOGTitle]"
+                      cachedDataType="wstr"
+                      cachedLength="500"
+                      cachedName="COFOGTitle"
+                      externalMetadataColumnId="Package\ETL_Department\Staging_Department.Inputs[OLE DB Destination Input].ExternalColumns[COFOGTitle]"
+                      lineageId="Package\ETL_Department\Department.Outputs[OLE DB Source Output].Columns[COFOGTitle]" />
+                    <inputColumn
+                      refId="Package\ETL_Department\Staging_Department.Inputs[OLE DB Destination Input].Columns[UserDefinitionReferenceTypeTitle]"
+                      cachedDataType="wstr"
+                      cachedLength="500"
+                      cachedName="UserDefinitionReferenceTypeTitle"
+                      externalMetadataColumnId="Package\ETL_Department\Staging_Department.Inputs[OLE DB Destination Input].ExternalColumns[UserDefinitionReferenceTypeTitle]"
+                      lineageId="Package\ETL_Department\Department.Outputs[OLE DB Source Output].Columns[UserDefinitionReferenceTypeTitle]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\ETL_Department\Staging_Department.Inputs[OLE DB Destination Input].ExternalColumns[OrganLevel1Name]"
+                      dataType="wstr"
+                      length="256"
+                      name="OrganLevel1Name" />
+                    <externalMetadataColumn
+                      refId="Package\ETL_Department\Staging_Department.Inputs[OLE DB Destination Input].ExternalColumns[OrganLevel1Code]"
+                      dataType="wstr"
+                      length="20"
+                      name="OrganLevel1Code" />
+                    <externalMetadataColumn
+                      refId="Package\ETL_Department\Staging_Department.Inputs[OLE DB Destination Input].ExternalColumns[OrganLevel2Name]"
+                      dataType="wstr"
+                      length="256"
+                      name="OrganLevel2Name" />
+                    <externalMetadataColumn
+                      refId="Package\ETL_Department\Staging_Department.Inputs[OLE DB Destination Input].ExternalColumns[OrganLevel2Code]"
+                      dataType="wstr"
+                      length="20"
+                      name="OrganLevel2Code" />
+                    <externalMetadataColumn
+                      refId="Package\ETL_Department\Staging_Department.Inputs[OLE DB Destination Input].ExternalColumns[OrganLevel3Name]"
+                      dataType="wstr"
+                      length="256"
+                      name="OrganLevel3Name" />
+                    <externalMetadataColumn
+                      refId="Package\ETL_Department\Staging_Department.Inputs[OLE DB Destination Input].ExternalColumns[OrganLevel3Code]"
+                      dataType="wstr"
+                      length="20"
+                      name="OrganLevel3Code" />
+                    <externalMetadataColumn
+                      refId="Package\ETL_Department\Staging_Department.Inputs[OLE DB Destination Input].ExternalColumns[OrganCode]"
+                      codePage="1256"
+                      dataType="str"
+                      length="20"
+                      name="OrganCode" />
+                    <externalMetadataColumn
+                      refId="Package\ETL_Department\Staging_Department.Inputs[OLE DB Destination Input].ExternalColumns[OrganName]"
+                      dataType="wstr"
+                      length="256"
+                      name="OrganName" />
+                    <externalMetadataColumn
+                      refId="Package\ETL_Department\Staging_Department.Inputs[OLE DB Destination Input].ExternalColumns[DepartmentSubTypeTitle]"
+                      dataType="wstr"
+                      length="500"
+                      name="DepartmentSubTypeTitle" />
+                    <externalMetadataColumn
+                      refId="Package\ETL_Department\Staging_Department.Inputs[OLE DB Destination Input].ExternalColumns[ParentOrganName]"
+                      dataType="wstr"
+                      length="256"
+                      name="ParentOrganName" />
+                    <externalMetadataColumn
+                      refId="Package\ETL_Department\Staging_Department.Inputs[OLE DB Destination Input].ExternalColumns[ParentOrganCode]"
+                      codePage="1256"
+                      dataType="str"
+                      length="20"
+                      name="ParentOrganCode" />
+                    <externalMetadataColumn
+                      refId="Package\ETL_Department\Staging_Department.Inputs[OLE DB Destination Input].ExternalColumns[OrganType]"
+                      dataType="ui1"
+                      name="OrganType" />
+                    <externalMetadataColumn
+                      refId="Package\ETL_Department\Staging_Department.Inputs[OLE DB Destination Input].ExternalColumns[ProvinceName]"
+                      dataType="wstr"
+                      length="100"
+                      name="ProvinceName" />
+                    <externalMetadataColumn
+                      refId="Package\ETL_Department\Staging_Department.Inputs[OLE DB Destination Input].ExternalColumns[COFOGTitle]"
+                      dataType="wstr"
+                      length="500"
+                      name="COFOGTitle" />
+                    <externalMetadataColumn
+                      refId="Package\ETL_Department\Staging_Department.Inputs[OLE DB Destination Input].ExternalColumns[UserDefinitionReferenceTypeTitle]"
+                      dataType="wstr"
+                      length="500"
+                      name="UserDefinitionReferenceTypeTitle" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\ETL_Department\Staging_Department.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\ETL_Department\Staging_Department.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ETL_Department\Staging_Department.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\ETL_Department\Staging_Department.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\ETL_Department\Staging_Department.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\ETL_Department\Staging_Department.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\ETL_Department.Paths[OLE DB Source Output]"
+              endId="Package\ETL_Department\Staging_Department.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\ETL_Department\Department.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\ETL_EmployeeCount"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{49873939-FFA4-427B-9DF2-6A3E85BAD5EF}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="ETL_EmployeeCount"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\ETL_EmployeeCount\EmployeeCount"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="EmployeeCount"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[rpt].[EmployeeCount]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\ETL_EmployeeCount\EmployeeCount.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Survey.Warehouse]"
+                  connectionManagerRefId="Package.ConnectionManagers[Survey.Warehouse]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\ETL_EmployeeCount\EmployeeCount.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ETL_EmployeeCount\EmployeeCount.Outputs[OLE DB Source Output].Columns[OrganCode]"
+                      codePage="1256"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ETL_EmployeeCount\EmployeeCount.Outputs[OLE DB Source Output].ExternalColumns[OrganCode]"
+                      length="20"
+                      lineageId="Package\ETL_EmployeeCount\EmployeeCount.Outputs[OLE DB Source Output].Columns[OrganCode]"
+                      name="OrganCode"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ETL_EmployeeCount\EmployeeCount.Outputs[OLE DB Source Output].Columns[OrganName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ETL_EmployeeCount\EmployeeCount.Outputs[OLE DB Source Output].ExternalColumns[OrganName]"
+                      length="256"
+                      lineageId="Package\ETL_EmployeeCount\EmployeeCount.Outputs[OLE DB Source Output].Columns[OrganName]"
+                      name="OrganName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ETL_EmployeeCount\EmployeeCount.Outputs[OLE DB Source Output].Columns[EmployeeCount]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ETL_EmployeeCount\EmployeeCount.Outputs[OLE DB Source Output].ExternalColumns[EmployeeCount]"
+                      lineageId="Package\ETL_EmployeeCount\EmployeeCount.Outputs[OLE DB Source Output].Columns[EmployeeCount]"
+                      name="EmployeeCount"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\ETL_EmployeeCount\EmployeeCount.Outputs[OLE DB Source Output].ExternalColumns[OrganCode]"
+                      codePage="1256"
+                      dataType="str"
+                      length="20"
+                      name="OrganCode" />
+                    <externalMetadataColumn
+                      refId="Package\ETL_EmployeeCount\EmployeeCount.Outputs[OLE DB Source Output].ExternalColumns[OrganName]"
+                      dataType="wstr"
+                      length="256"
+                      name="OrganName" />
+                    <externalMetadataColumn
+                      refId="Package\ETL_EmployeeCount\EmployeeCount.Outputs[OLE DB Source Output].ExternalColumns[EmployeeCount]"
+                      dataType="i4"
+                      name="EmployeeCount" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\ETL_EmployeeCount\EmployeeCount.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ETL_EmployeeCount\EmployeeCount.Outputs[OLE DB Source Error Output].Columns[OrganCode]"
+                      codePage="1256"
+                      dataType="str"
+                      length="20"
+                      lineageId="Package\ETL_EmployeeCount\EmployeeCount.Outputs[OLE DB Source Error Output].Columns[OrganCode]"
+                      name="OrganCode" />
+                    <outputColumn
+                      refId="Package\ETL_EmployeeCount\EmployeeCount.Outputs[OLE DB Source Error Output].Columns[OrganName]"
+                      dataType="wstr"
+                      length="256"
+                      lineageId="Package\ETL_EmployeeCount\EmployeeCount.Outputs[OLE DB Source Error Output].Columns[OrganName]"
+                      name="OrganName" />
+                    <outputColumn
+                      refId="Package\ETL_EmployeeCount\EmployeeCount.Outputs[OLE DB Source Error Output].Columns[EmployeeCount]"
+                      dataType="i4"
+                      lineageId="Package\ETL_EmployeeCount\EmployeeCount.Outputs[OLE DB Source Error Output].Columns[EmployeeCount]"
+                      name="EmployeeCount" />
+                    <outputColumn
+                      refId="Package\ETL_EmployeeCount\EmployeeCount.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\ETL_EmployeeCount\EmployeeCount.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\ETL_EmployeeCount\EmployeeCount.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\ETL_EmployeeCount\EmployeeCount.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\ETL_EmployeeCount\Staging_EmployeeCount"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Staging_EmployeeCount"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[EmployeeCount]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1256</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\ETL_EmployeeCount\Staging_EmployeeCount.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Staging]"
+                  connectionManagerRefId="Package.ConnectionManagers[Staging]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\ETL_EmployeeCount\Staging_EmployeeCount.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\ETL_EmployeeCount\Staging_EmployeeCount.Inputs[OLE DB Destination Input].Columns[OrganCode]"
+                      cachedCodepage="1256"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="OrganCode"
+                      externalMetadataColumnId="Package\ETL_EmployeeCount\Staging_EmployeeCount.Inputs[OLE DB Destination Input].ExternalColumns[OrganCode]"
+                      lineageId="Package\ETL_EmployeeCount\EmployeeCount.Outputs[OLE DB Source Output].Columns[OrganCode]" />
+                    <inputColumn
+                      refId="Package\ETL_EmployeeCount\Staging_EmployeeCount.Inputs[OLE DB Destination Input].Columns[OrganName]"
+                      cachedDataType="wstr"
+                      cachedLength="256"
+                      cachedName="OrganName"
+                      externalMetadataColumnId="Package\ETL_EmployeeCount\Staging_EmployeeCount.Inputs[OLE DB Destination Input].ExternalColumns[OrganName]"
+                      lineageId="Package\ETL_EmployeeCount\EmployeeCount.Outputs[OLE DB Source Output].Columns[OrganName]" />
+                    <inputColumn
+                      refId="Package\ETL_EmployeeCount\Staging_EmployeeCount.Inputs[OLE DB Destination Input].Columns[EmployeeCount]"
+                      cachedDataType="i4"
+                      cachedName="EmployeeCount"
+                      externalMetadataColumnId="Package\ETL_EmployeeCount\Staging_EmployeeCount.Inputs[OLE DB Destination Input].ExternalColumns[EmployeeCount]"
+                      lineageId="Package\ETL_EmployeeCount\EmployeeCount.Outputs[OLE DB Source Output].Columns[EmployeeCount]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\ETL_EmployeeCount\Staging_EmployeeCount.Inputs[OLE DB Destination Input].ExternalColumns[OrganCode]"
+                      codePage="1256"
+                      dataType="str"
+                      length="20"
+                      name="OrganCode" />
+                    <externalMetadataColumn
+                      refId="Package\ETL_EmployeeCount\Staging_EmployeeCount.Inputs[OLE DB Destination Input].ExternalColumns[OrganName]"
+                      dataType="wstr"
+                      length="256"
+                      name="OrganName" />
+                    <externalMetadataColumn
+                      refId="Package\ETL_EmployeeCount\Staging_EmployeeCount.Inputs[OLE DB Destination Input].ExternalColumns[EmployeeCount]"
+                      dataType="i4"
+                      name="EmployeeCount" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\ETL_EmployeeCount\Staging_EmployeeCount.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\ETL_EmployeeCount\Staging_EmployeeCount.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ETL_EmployeeCount\Staging_EmployeeCount.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\ETL_EmployeeCount\Staging_EmployeeCount.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\ETL_EmployeeCount\Staging_EmployeeCount.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\ETL_EmployeeCount\Staging_EmployeeCount.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\ETL_EmployeeCount.Paths[OLE DB Source Output]"
+              endId="Package\ETL_EmployeeCount\Staging_EmployeeCount.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\ETL_EmployeeCount\EmployeeCount.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate Table"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{EA0F1ABF-3E0A-4558-869D-395268391B37}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate Table"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{94D075A2-8C1E-4634-B929-E9D0C27F1456}"
+          SQLTask:SqlStatementSource="truncate table [Staging].[dbo].[Department]&#xA;  truncate table [Staging].[dbo].[EmployeeCount]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{8B40949C-139E-4C15-B84B-5882EFCBA0A8}"
+      DTS:From="Package\Truncate Table"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\ETL_Department" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{A6F09025-793A-474F-8882-3C55134F6992}"
+      DTS:From="Package\ETL_Department"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\ETL_EmployeeCount" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="158,42"
+          Id="Package\ETL_Department"
+          TopLeft="248,63" />
+        <NodeLayout
+          Size="176,42"
+          Id="Package\ETL_EmployeeCount"
+          TopLeft="240.5,163.5" />
+        <NodeLayout
+          Size="150,42"
+          Id="Package\Truncate Table"
+          TopLeft="60,60" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="210,82.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="38,0"
+              Start="0,0"
+              End="30.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="30.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="327.75,105">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,58.5"
+              Start="0,0"
+              End="0,51">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,51" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\ETL_Department">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="176,42"
+          Id="Package\ETL_Department\Staging_Department"
+          TopLeft="55,137" />
+        <NodeLayout
+          Size="135,42"
+          Id="Package\ETL_Department\Department"
+          TopLeft="74,33" />
+        <EdgeLayout
+          Id="Package\ETL_Department.Paths[OLE DB Source Output]"
+          TopLeft="142.25,75">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,62"
+              Start="0,0"
+              End="0,54.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,54.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\ETL_Department\Department">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Synonym</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\ETL_Department\Staging_Department">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\ETL_EmployeeCount">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="193,42"
+          Id="Package\ETL_EmployeeCount\Staging_EmployeeCount"
+          TopLeft="60,164" />
+        <NodeLayout
+          Size="152,42"
+          Id="Package\ETL_EmployeeCount\EmployeeCount"
+          TopLeft="79,60" />
+        <EdgeLayout
+          Id="Package\ETL_EmployeeCount.Paths[OLE DB Source Output]"
+          TopLeft="155.75,102">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,62"
+              Start="0,0"
+              End="0,54.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,54.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\ETL_EmployeeCount\EmployeeCount">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Synonym</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\ETL_EmployeeCount\Staging_EmployeeCount">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
